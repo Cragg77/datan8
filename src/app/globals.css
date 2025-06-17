@@ -1,0 +1,313 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Enable smooth scrolling globally */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Optimize for GPU acceleration and reduce repaints */
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Improve scrolling performance */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    /* Additional performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+    /* Prevent layout thrashing */
+    contain: layout style paint;
+  }
+
+  /* GPU acceleration for transforms */
+  .gpu-accelerated {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Optimize video elements */
+  video {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    /* Additional video optimizations */
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* Enhanced image optimization */
+  img {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Optimize scroll containers */
+  .scroll-container {
+    contain: layout style paint;
+    will-change: scroll-position;
+  }
+
+  /* Reduce animation complexity on slower devices */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float-1,
+    .animate-float-2,
+    .animate-float-3,
+    .animate-float-4,
+    .animate-float-5,
+    .animate-float-6 {
+      animation: none;
+    }
+  }
+
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 9% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+/* Floating Animation Keyframes - GPU Optimized */
+@keyframes float-1 {
+  0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -20px, 0) rotate(5deg); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translate3d(0, 0px, 0) rotate(45deg); }
+  50% { transform: translate3d(0, -30px, 0) rotate(50deg); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -25px, 0) rotate(-5deg); }
+}
+
+@keyframes float-4 {
+  0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -15px, 0) rotate(3deg); }
+}
+
+@keyframes float-5 {
+  0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -35px, 0) rotate(-3deg); }
+}
+
+@keyframes float-6 {
+  0%, 100% { transform: translate3d(0, 0px, 0) rotate(45deg); }
+  50% { transform: translate3d(0, -28px, 0) rotate(40deg); }
+}
+
+/* Hover Animation Keyframes */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 255, 247, 0.6);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+/* Animation Classes - Performance Optimized */
+.animate-float-1 {
+  animation: float-1 6s ease-in-out infinite;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-float-2 {
+  animation: float-2 8s ease-in-out infinite;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-float-3 {
+  animation: float-3 7s ease-in-out infinite;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-float-4 {
+  animation: float-4 9s ease-in-out infinite;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-float-5 {
+  animation: float-5 5s ease-in-out infinite;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-float-6 {
+  animation: float-6 7.5s ease-in-out infinite;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Interactive Hover Effects */
+.animate-float-1:hover {
+  animation: pulse-glow 0.8s ease-in-out infinite;
+  background-color: rgba(0, 255, 247, 0.2) !important;
+  border-color: rgba(0, 255, 247, 0.8) !important;
+}
+
+.animate-float-2:hover {
+  animation: spin-slow 2s linear infinite;
+  background-color: rgba(0, 255, 247, 0.25) !important;
+  border-color: rgba(0, 255, 247, 0.9) !important;
+}
+
+.animate-float-3:hover {
+  animation: bounce-scale 0.6s ease-in-out infinite;
+  background-color: rgba(0, 255, 247, 0.3) !important;
+  border-color: rgba(0, 255, 247, 1) !important;
+}
+
+.animate-float-4:hover {
+  animation: wobble 1s ease-in-out infinite;
+  background-color: rgba(0, 255, 247, 0.15) !important;
+  border-color: rgba(0, 255, 247, 0.7) !important;
+}
+
+.animate-float-5:hover {
+  animation: pulse-glow 1.2s ease-in-out infinite;
+  background-color: rgba(0, 255, 247, 0.4) !important;
+}
+
+.animate-float-6:hover {
+  animation: spin-slow 1.5s linear infinite;
+  background-color: rgba(0, 255, 247, 0.2) !important;
+  border-color: rgba(0, 255, 247, 0.8) !important;
+}
+
+/* Additional Interactive Effects */
+.floating-shape {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.floating-shape::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(0, 255, 247, 0.3) 0%, transparent 70%);
+  transition: all 0.4s ease;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.floating-shape:hover::before {
+  width: 200%;
+  height: 200%;
+}
+
+/* Particle trail effect */
+@keyframes particle-trail {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-20px);
+  }
+}
+
+.floating-shape:hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: #00FFF7;
+  border-radius: 50%;
+  animation: particle-trail 0.8s ease-out forwards;
+  transform: translate(-50%, -50%);
+}
